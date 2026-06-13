@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hangar Deck - Vehicle Inspection</title>
+    <script src="js/aframe.min.js"></script>
+    <script src="js/components.js"></script>
+</head>
+<body>
+    <a-scene fog="type: linear; color: #010110; near: 2; far: 20">
+        <a-assets>
+            <a-asset-item id="roketModel" src="assets/model.glb"></a-asset-item>
+        </a-assets>
+
+        <a-sky color="#010110"></a-sky>
+
+        <a-light type="ambient" color="#1a2b3c"></a-light>
+        <a-light type="spot" color="#00FFFF" intensity="2.5" position="0 12 -2" angle="45" target="#launch-pad"></a-light>
+
+        <a-camera position="0 1.6 5">
+            <a-cursor raycaster="objects: .clickable" color="#FFF"></a-cursor>
+        </a-camera>
+
+        <a-entity id="launch-pad" position="0 0 -1">
+            <a-cylinder radius="3.5" height="0.2" material="color: #12131a; metalness: 0.9; roughness: 0.2"></a-cylinder>
+            <a-ring radius-inner="3.3" radius-outer="3.5" rotation="-90 0 0" position="0 0.11 0" material="color: #FFD700; emissive: #FFD700; side: double"></a-ring>
+            
+            <a-box position="-2.8 3 -1" width="0.6" height="6" depth="0.6" material="color: #222; metalness: 0.8"></a-box>
+            <a-plane position="-1.5 1.8 1.5" width="1.8" height="1.2" material="color: #020715; opacity: 0.85" look-at="[camera]">
+                <a-text value="SYSTEM DIAGNOSTICS\n\nModel: Interstellar Rocket\nHull Status: Nominal\nFuel Capacitance: 100%\nStatus: READY FOR LAUNCH" color="#00FFFF" align="left" position="-0.8 0.3 0.01" scale="0.4 0.4 0.4"></a-text>
+            </a-plane>
+        </a-entity>
+
+        <a-entity gltf-model="#roketModel" position="0 0.11 -1" scale="0.45 0.45 0.45" animation="property: position; to: 0 0.3 -1; dur: 4000; dir: alternate; loop: true; easing: easeInOutSine"></a-entity>
+
+        <a-entity position="-2 1 3" warp-portal="href: scene2.html">
+            <a-circle radius="0.8" material="opacity: 0; transparent: true" class="clickable" position="0 0 0.1" look-at="[camera]"></a-circle>
+            <a-ring class="warp-ring" radius-inner="0.4" radius-outer="0.5" material="color: #FF00FF; emissive: #FF00FF" look-at="[camera]"></a-ring>
+            <a-text value="< INTERFACE" position="0 0.8 0" align="center" color="#FFF" scale="0.5 0.5 0.5" look-at="[camera]"></a-text>
+        </a-entity>
+        <a-entity position="2 1 3" warp-portal="href: scene4-gallery.html">
+            <a-circle radius="0.8" material="opacity: 0; transparent: true" class="clickable" position="0 0 0.1" look-at="[camera]"></a-circle>
+            <a-ring class="warp-ring" radius-inner="0.4" radius-outer="0.5" material="color: #00FFFF; emissive: #00FFFF" look-at="[camera]"></a-ring>
+            <a-text value="GALERI 3D >" position="0 0.8 0" align="center" color="#FFF" scale="0.5 0.5 0.5" look-at="[camera]"></a-text>
+        </a-entity>
+    </a-scene>
+</body>
+</html>
